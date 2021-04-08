@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Systemy wbudowane</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+
+<body>
+    <img src="/video" />
+    <!-- <video id="video" muted autoplay></video>
+    <script>
+        var video = document.getElementById('video');
+        var videoSrc = '/stream.m3u8';
+        //
+        // First check for native browser HLS support
+        //
+        if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+            console.log("es")
+            //
+            // If no native HLS support, check if hls.js is supported
+            //
+        } else if (Hls.isSupported()) {
+            var hls = new Hls({ liveSyncDurationCount: 0.02 });
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            video.play();
+        }
+    </script> -->
+</body>
+
+</html>
