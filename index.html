@@ -4,32 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <title>Systemy wbudowane</title>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <style>
+        html, 
+        body {
+            height: 100%;
+        }
+    </style>
 </head>
 
-<body>
-    <img src="/video" />
-    <!-- <video id="video" muted autoplay></video>
+<body class="bg-gray-50">
+    <div id="nav" class="flex flex-row m-4 fixed">
+        <h2 class="text-4xl text-gray-700 text-opacity-75 mr-6">Filters:</h2>
+        
+        <div id="buttons" class="flex flex-row">
+            <template id="filter-button">
+                <button class="bg-white hover:bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-5">
+                    Placeholder
+                </button>
+            </template>
+        </div>
+    </div>
+
+    <div class="flex flex-col justify-center items-center h-full">
+        <img id="video" class="rounded h-4/5" />
+    </div>
+    
     <script>
-        var video = document.getElementById('video');
-        var videoSrc = '/stream.m3u8';
-        //
-        // First check for native browser HLS support
-        //
-        if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = videoSrc;
-            console.log("es")
-            //
-            // If no native HLS support, check if hls.js is supported
-            //
-        } else if (Hls.isSupported()) {
-            var hls = new Hls({ liveSyncDurationCount: 0.02 });
-            hls.loadSource(videoSrc);
-            hls.attachMedia(video);
-            video.play();
+        const filters = [{id: "sobel", label: "Sobel filter"}, {id: "detection", label: "Object detection"}];
+        
+        function switchVideoDecorator(id) {
+            document.querySelector("#video").src = "/video/" + id;
         }
-    </script> -->
+
+        filters.forEach(({id, label}) => {
+            const copy = document.querySelector("#filter-button").content.cloneNode(true);
+            const button = copy.querySelector("button");
+            button.id = id;
+            button.textContent = label;
+            console.log(button);
+            button.onclick = () => switchVideoDecorator(id);
+            document.querySelector("#buttons").appendChild(button);
+        });
+        
+        
+        switchVideoDecorator(filters[0].id);
+    </script>
+    
 </body>
 
 </html>
