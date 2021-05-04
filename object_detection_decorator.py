@@ -1,6 +1,7 @@
+from frame_decorator import FrameDecorator
 import cv2
 
-class ObjectDetectionDecorator():
+class ObjectDetectionDecorator(FrameDecorator):
 
     def __init__(self):
         print("Initializing object detector...")

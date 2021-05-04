@@ -7,7 +7,7 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <title>Systemy wbudowane</title>
     <style>
-        html, 
+        html,
         body {
             height: 100%;
         }
@@ -17,10 +17,11 @@
 <body class="bg-gray-50">
     <div id="nav" class="flex flex-row m-4 fixed">
         <h2 class="text-4xl text-gray-700 text-opacity-75 mr-6">Filters:</h2>
-        
+
         <div id="buttons" class="flex flex-row">
             <template id="filter-button">
-                <button class="bg-white hover:bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-5">
+                <button
+                    class="bg-white hover:bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 font-semibold py-2 px-4 border border-gray-400 rounded shadow mr-5">
                     Placeholder
                 </button>
             </template>
@@ -30,15 +31,15 @@
     <div class="flex flex-col justify-center items-center h-full">
         <img id="video" class="rounded h-4/5" />
     </div>
-    
+
     <script>
-        const filters = [{id: "sobel", label: "Sobel filter"}, {id: "detection", label: "Object detection"}];
-        
+        const filters = [{ id: "sobel", label: "Sobel filter" }, { id: "object_detection", label: "Object detection" }, { id: "motion_detection", label: "Motion detection" }];
+
         function switchVideoDecorator(id) {
             document.querySelector("#video").src = "/video/" + id;
         }
 
-        filters.forEach(({id, label}) => {
+        filters.forEach(({ id, label }) => {
             const copy = document.querySelector("#filter-button").content.cloneNode(true);
             const button = copy.querySelector("button");
             button.id = id;
@@ -47,11 +48,11 @@
             button.onclick = () => switchVideoDecorator(id);
             document.querySelector("#buttons").appendChild(button);
         });
-        
-        
+
+
         switchVideoDecorator(filters[0].id);
     </script>
-    
+
 </body>
 
 </html>
